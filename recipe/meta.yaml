@@ -1,19 +1,18 @@
 {% set name = "sas7bdat" %}
-{% set version = "2.2.3" %}
-{% set sha256 = "484c609d962442203c15bc719a638de992a23cd13bc1971a5af6dfb0daf9f797" %}
+{% set version = "2.3.0" %}
+{% set sha256 = "ed8bfe652c7e8bb8e8db788da5680fdbe1dada2361ee00fb7eeda032e7388f3d" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
   number: 0
-  noarch: python
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation
 
 requirements:
   host:
@@ -26,14 +25,17 @@ requirements:
 test:
   imports:
     - sas7bdat
+  requires:
+    - python
+  commands:
+    - pip check
 
 about:
-  home: http://pyhacker.com/pages/sas7bdat.html
+  home: https://pyhacker.com/pages/sas7bdat.html
   license: MIT
   summary: sas7bdat file reader for Python
   description: |
     sas7bdat will read sas7bdat files using pure Python (2.6+, 3+). No SAS
     software required!
-  doc_url: https://pypi.python.org/pypi/sas7bdat
-  doc_source_url: https://bitbucket.org/jaredhobbs/sas7bdat
+  doc_url: https://pypi.org/pypi/sas7bdat
   dev_url: https://bitbucket.org/jaredhobbs/sas7bdat
