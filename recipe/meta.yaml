@@ -17,22 +17,22 @@ requirements:
   host:
     - python
     - pip
+    - setuptools
+    - wheel
   run:
     - python
     - six >=1.8.0
 
+# pypi package has no tests/data folder, so test are not runnable.
+# [Errno 2] No such file or directory: 'tests/data/format_u64_be.sas7bdat'
 test:
-  source_files:
-    - tests
   imports:
     - sas7bdat
   requires:
     - python
     - pip
-    - pytest
   commands:
     - pip check
-    - pytest -vv tests
 
 about:
   home: https://pyhacker.com/pages/sas7bdat.html
